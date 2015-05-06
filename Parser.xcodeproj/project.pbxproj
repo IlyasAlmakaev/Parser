@@ -10,10 +10,11 @@
 		84E7EC931AF9DA0000E1473E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7EC921AF9DA0000E1473E /* main.m */; };
 		84E7EC961AF9DA0000E1473E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7EC951AF9DA0000E1473E /* AppDelegate.m */; };
 		84E7EC991AF9DA0000E1473E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7EC981AF9DA0000E1473E /* ViewController.m */; };
-		84E7EC9C1AF9DA0000E1473E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E7EC9A1AF9DA0000E1473E /* Main.storyboard */; };
 		84E7EC9E1AF9DA0000E1473E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E7EC9D1AF9DA0000E1473E /* Images.xcassets */; };
 		84E7ECA11AF9DA0000E1473E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E7EC9F1AF9DA0000E1473E /* LaunchScreen.xib */; };
 		84E7ECAD1AF9DA0000E1473E /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7ECAC1AF9DA0000E1473E /* ParserTests.m */; };
+		84E7ECB91AF9DAB900E1473E /* ParserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7ECB71AF9DAB900E1473E /* ParserTableViewController.m */; };
+		84E7ECBA1AF9DAB900E1473E /* ParserTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E7ECB81AF9DAB900E1473E /* ParserTableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,12 +35,14 @@
 		84E7EC951AF9DA0000E1473E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		84E7EC971AF9DA0000E1473E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		84E7EC981AF9DA0000E1473E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		84E7EC9B1AF9DA0000E1473E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84E7EC9D1AF9DA0000E1473E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		84E7ECA01AF9DA0000E1473E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		84E7ECA61AF9DA0000E1473E /* ParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E7ECAB1AF9DA0000E1473E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E7ECAC1AF9DA0000E1473E /* ParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
+		84E7ECB61AF9DAB900E1473E /* ParserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTableViewController.h; sourceTree = "<group>"; };
+		84E7ECB71AF9DAB900E1473E /* ParserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTableViewController.m; sourceTree = "<group>"; };
+		84E7ECB81AF9DAB900E1473E /* ParserTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParserTableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +88,12 @@
 				84E7EC951AF9DA0000E1473E /* AppDelegate.m */,
 				84E7EC971AF9DA0000E1473E /* ViewController.h */,
 				84E7EC981AF9DA0000E1473E /* ViewController.m */,
-				84E7EC9A1AF9DA0000E1473E /* Main.storyboard */,
 				84E7EC9D1AF9DA0000E1473E /* Images.xcassets */,
 				84E7EC9F1AF9DA0000E1473E /* LaunchScreen.xib */,
 				84E7EC901AF9DA0000E1473E /* Supporting Files */,
+				84E7ECB61AF9DAB900E1473E /* ParserTableViewController.h */,
+				84E7ECB71AF9DAB900E1473E /* ParserTableViewController.m */,
+				84E7ECB81AF9DAB900E1473E /* ParserTableViewController.xib */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -199,7 +204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E7EC9C1AF9DA0000E1473E /* Main.storyboard in Resources */,
+				84E7ECBA1AF9DAB900E1473E /* ParserTableViewController.xib in Resources */,
 				84E7ECA11AF9DA0000E1473E /* LaunchScreen.xib in Resources */,
 				84E7EC9E1AF9DA0000E1473E /* Images.xcassets in Resources */,
 			);
@@ -221,6 +226,7 @@
 			files = (
 				84E7EC991AF9DA0000E1473E /* ViewController.m in Sources */,
 				84E7EC961AF9DA0000E1473E /* AppDelegate.m in Sources */,
+				84E7ECB91AF9DAB900E1473E /* ParserTableViewController.m in Sources */,
 				84E7EC931AF9DA0000E1473E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,14 +250,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		84E7EC9A1AF9DA0000E1473E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84E7EC9B1AF9DA0000E1473E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		84E7EC9F1AF9DA0000E1473E /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

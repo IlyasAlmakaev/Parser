@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ParserTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // create an instance of the view controller you want to be displayed first
+    ParserTableViewController *parserTableViewController = [[ParserTableViewController alloc] initWithNibName:@"ParserTableViewController" bundle:nil];
+    // set it as the root view controller of the application's window
+    [self.window setRootViewController:parserTableViewController];
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
