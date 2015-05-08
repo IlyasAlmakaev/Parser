@@ -7,51 +7,147 @@
 //
 
 #import "ParserTableViewController.h"
+#import "TFHpple.h"
+#import "News.h"
+#import "ParserTableViewCell.h"
+#import "AFNetworking.h"
 
 @interface ParserTableViewController ()
+
+@property (strong, nonatomic) NSMutableArray *title;
 
 @end
 
 @implementation ParserTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
+    [self.tableView registerNib:[UINib nibWithNibName:@"ParserTableViewCell" bundle:nil] forCellReuseIdentifier:@"idCell"];
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://live.goodline.info/guest"]];
+    
+    AFHTTPRequestOperation * operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    operation.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        TFHpple *parser = [[TFHpple alloc] initWithHTMLData:responseObject];
+        
+        //     self.title = (NSArray*)responseObject;
+        
+        //     [self.tableView reloadData];
+        
+        //     NSLog(@"%@", self.title);
+        
+        
+        
+        // Way for parsing
+        
+        NSString *titleXpathQueryString = @"//h2[@class='topic-title word-wrap']/a";
+        
+        NSArray *titleNodes = [parser searchWithXPathQuery:titleXpathQueryString];
+        
+        
+        // Push parsing elements to arrays
+        NSMutableArray *container = [[NSMutableArray alloc] initWithCapacity:0];
+        for (TFHppleElement *element in titleNodes)
+        {
+            News *news = [[News alloc] init];
+            [container addObject:news];
+            
+            news.title = [element text];
+            
+            self.title = container;
+            
+            [self.tableView reloadData];
+            
+            NSString *test = [self.title objectAtIndex:0];
+            
+            NSLog(@"%@", news.title);
+        }
+
+        
+        
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"%@", error.localizedDescription);
+        
+    }];
+    
+    [operation start];
+    
+    // Url for parsing
+  /*  NSURL *Url = [NSURL URLWithString:@"http://live.goodline.info/guest"];
+    NSData *HtmlData = [NSData dataWithContentsOfURL:Url];
+    
+    // Parser
+    TFHpple *parser = [TFHpple hppleWithHTMLData:HtmlData];
+    
+    // Way for parsing
+    NSString *titleXpathQueryString = @"//h2[@class='topic-title word-wrap']/a";
+    NSArray *titleNodes = [parser searchWithXPathQuery:titleXpathQueryString];
+    
+    // Push parsing elements to arrays
+    NSMutableArray *container = [[NSMutableArray alloc] initWithCapacity:0];
+    for (TFHppleElement *element in titleNodes)
+    {
+        News *news = [[News alloc] init];
+        [container addObject:news];
+        
+        news.title = [element text];
+        
+        self.title = container;
+        
+        [self.tableView reloadData];
+        
+        NSString *test = [self.title objectAtIndex:0];
+
+        NSLog(@"%@", news.title);
+    }*/
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return self.title.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+  //  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    ParserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idCell"];
+    
+    if (cell == nil) {
+        cell = [[ParserTableViewCell alloc] init]; // or your custom initialization
+    }
+    
+    News *thisNews= [self.title objectAtIndex:indexPath.row];
+    
+    NSLog(@"%@", thisNews.title);
+    
+    [cell.titleLabel setText:thisNews.title];
     
     // Configure the cell...
     
     return cell;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 102;
+}
 
 /*
 // Override to support conditional editing of the table view.
