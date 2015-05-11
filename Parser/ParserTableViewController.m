@@ -11,105 +11,52 @@
 #import "News.h"
 #import "ParserTableViewCell.h"
 #import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
+#import "ParserViewController.h"
 
 @interface ParserTableViewController ()
 
-@property (strong, nonatomic) NSMutableArray *title;
+@property (strong, nonatomic) NSMutableArray *newsContent;
+@property (strong, nonatomic) ParserViewController *parserViewController;
+@property (strong, nonatomic) UINavigationController *parserNavigationController;
 
 @end
 
 @implementation ParserTableViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+       
+
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Новости";
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"ParserTableViewCell" bundle:nil] forCellReuseIdentifier:@"idCell"];
+    
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    
+    [refresh addTarget:self action:@selector(parse) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+    
+    [self parse];
 
-    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://live.goodline.info/guest"]];
-    
-    AFHTTPRequestOperation * operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    
-    operation.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        TFHpple *parser = [[TFHpple alloc] initWithHTMLData:responseObject];
-        
-        //     self.title = (NSArray*)responseObject;
-        
-        //     [self.tableView reloadData];
-        
-        //     NSLog(@"%@", self.title);
-        
-        
-        
-        // Way for parsing
-        
-        NSString *titleXpathQueryString = @"//h2[@class='topic-title word-wrap']/a";
-        
-        NSArray *titleNodes = [parser searchWithXPathQuery:titleXpathQueryString];
-        
-        
-        // Push parsing elements to arrays
-        NSMutableArray *container = [[NSMutableArray alloc] initWithCapacity:0];
-        for (TFHppleElement *element in titleNodes)
-        {
-            News *news = [[News alloc] init];
-            [container addObject:news];
-            
-            news.title = [element text];
-            
-            self.title = container;
-            
-            [self.tableView reloadData];
-            
-            NSString *test = [self.title objectAtIndex:0];
-            
-            NSLog(@"%@", news.title);
-        }
+}
 
-        
-        
-        
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSLog(@"%@", error.localizedDescription);
-        
-    }];
-    
-    [operation start];
-    
-    // Url for parsing
-  /*  NSURL *Url = [NSURL URLWithString:@"http://live.goodline.info/guest"];
-    NSData *HtmlData = [NSData dataWithContentsOfURL:Url];
-    
-    // Parser
-    TFHpple *parser = [TFHpple hppleWithHTMLData:HtmlData];
-    
-    // Way for parsing
-    NSString *titleXpathQueryString = @"//h2[@class='topic-title word-wrap']/a";
-    NSArray *titleNodes = [parser searchWithXPathQuery:titleXpathQueryString];
-    
-    // Push parsing elements to arrays
-    NSMutableArray *container = [[NSMutableArray alloc] initWithCapacity:0];
-    for (TFHppleElement *element in titleNodes)
-    {
-        News *news = [[News alloc] init];
-        [container addObject:news];
-        
-        news.title = [element text];
-        
-        self.title = container;
-        
-        [self.tableView reloadData];
-        
-        NSString *test = [self.title objectAtIndex:0];
-
-        NSLog(@"%@", news.title);
-    }*/
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 #pragma mark - Table view data source
@@ -121,24 +68,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.title.count;
+    return self.newsContent.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  //  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     ParserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idCell"];
     
     if (cell == nil) {
         cell = [[ParserTableViewCell alloc] init]; // or your custom initialization
     }
     
-    News *thisNews= [self.title objectAtIndex:indexPath.row];
-    
-    NSLog(@"%@", thisNews.title);
+    News *thisNews= [self.newsContent objectAtIndex:indexPath.row];
     
     [cell.titleLabel setText:thisNews.title];
-    
+    cell.dateLabel.text = [thisNews.date stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [cell.imageLabel setImageWithURL:[NSURL URLWithString:thisNews.image]];
+
     // Configure the cell...
     
     return cell;
@@ -147,6 +94,75 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 102;
+}
+
+#pragma mark - Table view delegate
+
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.parserViewController = [[ParserViewController alloc] init];
+    
+    News *thisNews= [self.newsContent objectAtIndex:indexPath.row];
+    self.parserViewController.reference = thisNews.reference;
+    
+    
+    self.parserNavigationController = [[UINavigationController alloc] initWithRootViewController:self.parserViewController];
+    [self presentViewController:self.parserNavigationController animated:YES completion:nil];
+}
+
+- (void)parse
+{
+    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://live.goodline.info/guest"]];
+    
+    AFHTTPRequestOperation * operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    operation.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        TFHpple *parser = [[TFHpple alloc] initWithHTMLData:responseObject];
+        
+        NSString *pathQueryString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
+        
+        NSArray *nodes = [parser searchWithXPathQuery:pathQueryString];
+        
+        
+        // Push parsing elements to arrays
+        NSMutableArray *container = [[NSMutableArray alloc] initWithCapacity:0];
+        for (TFHppleElement *elements in nodes)
+        {
+            News *news = [[News alloc] init];
+            [container addObject:news];
+            
+            TFHppleElement *element = [elements firstChildWithClassName:@"wraps out-topic"];
+            
+            news.title = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
+            
+            news.date = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
+            
+            news.image = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
+            
+            news.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
+            
+            self.newsContent = container;
+            
+            [self.tableView reloadData];
+            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"%@", error.localizedDescription);
+        
+    }];
+    
+    [operation start];
+}
+
+- (void)stopRefresh
+{
+    [self.refreshControl endRefreshing];
 }
 
 /*
@@ -180,22 +196,6 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 */
 

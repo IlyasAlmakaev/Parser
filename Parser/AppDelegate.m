@@ -22,8 +22,11 @@
     
     // create an instance of the view controller you want to be displayed first
     ParserTableViewController *parserTableViewController = [[ParserTableViewController alloc] initWithNibName:@"ParserTableViewController" bundle:nil];
+    
+    UINavigationController *newListNavigationController = [[UINavigationController alloc] initWithRootViewController:parserTableViewController];
+    
     // set it as the root view controller of the application's window
-    [self.window setRootViewController:parserTableViewController];
+    [self.window setRootViewController:newListNavigationController];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

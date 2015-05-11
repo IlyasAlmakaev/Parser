@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11CD1DC81B0109BA0002FB82 /* ParserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CD1DC61B0109BA0002FB82 /* ParserViewController.m */; };
+		11CD1DC91B0109BA0002FB82 /* ParserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11CD1DC71B0109BA0002FB82 /* ParserViewController.xib */; };
 		84956F2D1AFC686C0077061D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84956F2C1AFC686C0077061D /* libxml2.dylib */; };
 		84956F311AFC7DA70077061D /* ParserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84956F2F1AFC7DA70077061D /* ParserTableViewCell.m */; };
 		84956F321AFC7DA70077061D /* ParserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84956F301AFC7DA70077061D /* ParserTableViewCell.xib */; };
@@ -34,6 +36,9 @@
 
 /* Begin PBXFileReference section */
 		068EF4925D55A644B40359CF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		11CD1DC51B0109BA0002FB82 /* ParserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserViewController.h; sourceTree = "<group>"; };
+		11CD1DC61B0109BA0002FB82 /* ParserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserViewController.m; sourceTree = "<group>"; };
+		11CD1DC71B0109BA0002FB82 /* ParserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParserViewController.xib; sourceTree = "<group>"; };
 		84956F2C1AFC686C0077061D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		84956F2E1AFC7DA70077061D /* ParserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTableViewCell.h; sourceTree = "<group>"; };
 		84956F2F1AFC7DA70077061D /* ParserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTableViewCell.m; sourceTree = "<group>"; };
@@ -123,6 +128,9 @@
 				84956F2E1AFC7DA70077061D /* ParserTableViewCell.h */,
 				84956F2F1AFC7DA70077061D /* ParserTableViewCell.m */,
 				84956F301AFC7DA70077061D /* ParserTableViewCell.xib */,
+				11CD1DC51B0109BA0002FB82 /* ParserViewController.h */,
+				11CD1DC61B0109BA0002FB82 /* ParserViewController.m */,
+				11CD1DC71B0109BA0002FB82 /* ParserViewController.xib */,
 				84956F331AFC8FD60077061D /* News.h */,
 				84956F341AFC8FD60077061D /* News.m */,
 				84E7EC901AF9DA0000E1473E /* Supporting Files */,
@@ -248,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84956F321AFC7DA70077061D /* ParserTableViewCell.xib in Resources */,
+				11CD1DC91B0109BA0002FB82 /* ParserViewController.xib in Resources */,
 				84E7ECBA1AF9DAB900E1473E /* ParserTableViewController.xib in Resources */,
 				84E7ECA11AF9DA0000E1473E /* LaunchScreen.xib in Resources */,
 				84E7EC9E1AF9DA0000E1473E /* Images.xcassets in Resources */,
@@ -302,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84E7EC991AF9DA0000E1473E /* ViewController.m in Sources */,
+				11CD1DC81B0109BA0002FB82 /* ParserViewController.m in Sources */,
 				84E7EC961AF9DA0000E1473E /* AppDelegate.m in Sources */,
 				84956F351AFC8FD60077061D /* News.m in Sources */,
 				84956F311AFC7DA70077061D /* ParserTableViewCell.m in Sources */,
@@ -426,6 +436,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Parser/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -437,6 +448,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Parser/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
