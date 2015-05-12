@@ -74,7 +74,7 @@
                     
                     textNews = [[NSMutableAttributedString alloc] initWithString:@""];
                 }
-                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.heightY, self.content.frame.size.width, self.content.frame.size.width)];
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.heightY, self.content.frame.size.width, self.content.frame.size.width*2/3)];
                 imageView.contentMode = UIViewContentModeScaleToFill;
                 [imageView setImageWithURL:[NSURL URLWithString:[element objectForKey:@"src"]]];
                 
