@@ -44,9 +44,9 @@
 {
     [super viewWillAppear:animated];
     
-    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.reference]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.reference]];
     
-    AFHTTPRequestOperation * operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
     operation.responseSerializer = [AFHTTPResponseSerializer serializer];
     
@@ -94,10 +94,7 @@
             UITextView *contentText = [self buildText:textNews];
             [self.content addSubview:contentText];
             self.content.contentSize = CGSizeMake(self.view.frame.size.width, self.heightY);
-        }
-        
-
-        
+        } 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         NSLog(@"%@", error.localizedDescription);
