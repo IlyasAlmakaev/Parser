@@ -19,10 +19,22 @@
 @property (strong, nonatomic) NSMutableArray *newsContent;
 @property (strong, nonatomic) ParserViewController *parserViewController;
 @property (strong, nonatomic) UINavigationController *parserNavigationController;
+@property int pageNumber;
 
 @end
 
 @implementation ParserTableViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.newsContent = [[NSMutableArray alloc] init];
+        self.pageNumber = 1;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -101,49 +113,58 @@
     [self presentViewController:self.parserNavigationController animated:YES completion:nil];
 }
 
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger totalRow = [tableView numberOfRowsInSection:indexPath.section];
+    if(indexPath.row == totalRow -1)
+    {
+        [self parse];
+        self.pageNumber += 1;
+    }
+}
+
 - (void)parse
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://live.goodline.info/guest"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://live.goodline.info/guest/page%i", (self.pageNumber)]]];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
     operation.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        TFHpple *parser = [[TFHpple alloc] initWithHTMLData:responseObject];
-        
-        NSString *pathQueryString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
-        
-        NSArray *nodes = [parser searchWithXPathQuery:pathQueryString];
-        
-        // Push parsing elements to arrays
-        NSMutableArray *container = [[NSMutableArray alloc] initWithCapacity:0];
-        for (TFHppleElement *elements in nodes)
-        {
-            News *news = [[News alloc] init];
-            [container addObject:news];
-            
-            TFHppleElement *element = [elements firstChildWithClassName:@"wraps out-topic"];
-            
-            news.title = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
-            
-            news.date = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
-            
-            news.image = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
-            
-            news.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
-            
-            self.newsContent = container;
-            
-            [self.tableView reloadData];
-            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        NSLog(@"%@", error.localizedDescription);
-    }];
+     {
+         TFHpple *parser = [[TFHpple alloc] initWithHTMLData:responseObject];
+         
+         NSString *pathQueryString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
+         
+         NSArray *nodes = [parser searchWithXPathQuery:pathQueryString];
+         
+         for (TFHppleElement *elements in nodes)
+         {
+             News *news = [[News alloc] init];
+             
+             
+             TFHppleElement *element = [elements firstChildWithClassName:@"wraps out-topic"];
+             
+             news.title = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
+             
+             news.date = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
+             
+             news.image = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
+             
+             news.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
+             
+             [self.newsContent addObject:news];
+         }
+         
+         [self.tableView reloadData];
+         [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+         
+     }
+                                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"%@", error.localizedDescription);
+     }];
     
     [operation start];
 }
