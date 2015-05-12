@@ -67,13 +67,13 @@
             {
                 if (![textNews isEqual:@""])
                 {
-                    UITextView *textBlock = [self buildText:textNews];
-                    [self.content addSubview:textBlock];
+                    UITextView *contentText = [self buildText:textNews];
+                    [self.content addSubview:contentText];
                     self.content.contentSize = CGSizeMake(self.view.frame.size.width, self.heightY);
                     
                     textNews = [[NSMutableAttributedString alloc] initWithString:@""];
                 }
-                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.heightY, self.content.frame.size.width-10, self.content.frame.size.width*9/16)];
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.heightY, self.content.frame.size.width, self.content.frame.size.width)];
                 imageView.contentMode = UIViewContentModeScaleAspectFit;
                 [imageView setImageWithURL:[NSURL URLWithString:[element objectForKey:@"src"]]];
                 
@@ -91,8 +91,8 @@
         
         if (![textNews isEqual:@""])
         {
-            UITextView *textBlock = [self buildText:textNews];
-            [self.content addSubview:textBlock];
+            UITextView *contentText = [self buildText:textNews];
+            [self.content addSubview:contentText];
             self.content.contentSize = CGSizeMake(self.view.frame.size.width, self.heightY);
         }
         
