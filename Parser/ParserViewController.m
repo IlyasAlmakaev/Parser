@@ -35,7 +35,8 @@
 }
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -50,8 +51,8 @@
     
     operation.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
         TFHpple *parser = [[TFHpple alloc] initWithHTMLData:responseObject];
         
         NSString *pathQueryString = @"//div[@class='topic-content text']";
@@ -95,10 +96,9 @@
             [self.content addSubview:contentText];
             self.content.contentSize = CGSizeMake(self.view.frame.size.width, self.heightY);
         } 
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
         NSLog(@"%@", error.localizedDescription);
-        
     }];
     
     [operation start];

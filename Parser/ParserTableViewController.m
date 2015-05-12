@@ -49,12 +49,14 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     // Return the number of rows in the section.
     return self.newsContent.count;
 }
@@ -64,7 +66,8 @@
 {
     ParserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idCell"];
     
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[ParserTableViewCell alloc] init]; // or your custom initialization
     }
     
@@ -94,7 +97,6 @@
     News *thisNews= [self.newsContent objectAtIndex:indexPath.row];
     self.parserViewController.reference = thisNews.reference;
     
-    
     self.parserNavigationController = [[UINavigationController alloc] initWithRootViewController:self.parserViewController];
     [self presentViewController:self.parserNavigationController animated:YES completion:nil];
 }
@@ -107,14 +109,13 @@
     
     operation.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
         TFHpple *parser = [[TFHpple alloc] initWithHTMLData:responseObject];
         
         NSString *pathQueryString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
         
         NSArray *nodes = [parser searchWithXPathQuery:pathQueryString];
-        
         
         // Push parsing elements to arrays
         NSMutableArray *container = [[NSMutableArray alloc] initWithCapacity:0];
@@ -139,10 +140,9 @@
             [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
         NSLog(@"%@", error.localizedDescription);
-        
     }];
     
     [operation start];
