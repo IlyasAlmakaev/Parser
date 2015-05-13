@@ -20,6 +20,8 @@
 @property (strong, nonatomic) ParserViewController *parserViewController;
 @property (strong, nonatomic) UINavigationController *parserNavigationController;
 @property int pageNumber;
+@property (strong, nonatomic) AppDelegate *appD;
+@property News *news;
 
 @end
 
@@ -44,6 +46,8 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ParserTableViewCell" bundle:nil] forCellReuseIdentifier:@"idCell"];
     
+    self.appD = [[AppDelegate alloc] init];
+    
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
     
@@ -57,6 +61,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.news = [NSEntityDescription insertNewObjectForEntityForName:@"News"
+                                               inManagedObjectContext:self.appD.managedOC];
 }
 
 #pragma mark - Table view data source
@@ -83,11 +89,11 @@
         cell = [[ParserTableViewCell alloc] init]; // or your custom initialization
     }
     
-    News *thisNews= [self.newsContent objectAtIndex:indexPath.row];
+    self.news = [self.newsContent objectAtIndex:indexPath.row];
     
-    [cell.titleLabel setText:thisNews.title];
-    cell.dateLabel.text = [thisNews.date stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [cell.imageLabel setImageWithURL:[NSURL URLWithString:thisNews.image]];
+    [cell.titleLabel setText:self.news.title];
+    cell.dateLabel.text = [self.news.date stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [cell.imageLabel setImageWithURL:[NSURL URLWithString:self.news.image]];
 
     // Configure the cell...
     
@@ -106,8 +112,8 @@
 {
     self.parserViewController = [[ParserViewController alloc] init];
     
-    News *thisNews= [self.newsContent objectAtIndex:indexPath.row];
-    self.parserViewController.reference = thisNews.reference;
+    self.news = [self.newsContent objectAtIndex:indexPath.row];
+    self.parserViewController.reference = self.news.reference;
     
     self.parserNavigationController = [[UINavigationController alloc] initWithRootViewController:self.parserViewController];
     [self presentViewController:self.parserNavigationController animated:YES completion:nil];
@@ -141,20 +147,20 @@
          
          for (TFHppleElement *elements in nodes)
          {
-             News *news = [[News alloc] init];
-             
+             self.news = [NSEntityDescription insertNewObjectForEntityForName:@"News"
+                                                       inManagedObjectContext:self.appD.managedOC];
              
              TFHppleElement *element = [elements firstChildWithClassName:@"wraps out-topic"];
              
-             news.title = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
+             self.news.title = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
              
-             news.date = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
+             self.news.date = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
              
-             news.image = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
+             self.news.image = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
              
-             news.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
+             self.news.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
              
-             [self.newsContent addObject:news];
+             [self.newsContent addObject:self.news];
          }
          
          [self.tableView reloadData];

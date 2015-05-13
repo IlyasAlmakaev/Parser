@@ -2,17 +2,19 @@
 //  News.h
 //  Parser
 //
-//  Created by Admin on 08.05.15.
+//  Created by almakaev iliyas on 13.05.15.
 //  Copyright (c) 2015 intent. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface News : NSObject
 
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *date;
-@property (nonatomic, copy) NSString *image;
-@property (nonatomic, copy) NSString *reference;
+@interface News : NSManagedObject
+
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * date;
+@property (nonatomic, retain) NSString * image;
+@property (nonatomic, retain) NSString * reference;
 
 @end

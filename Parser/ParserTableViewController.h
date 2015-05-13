@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface ParserTableViewController : UITableViewController
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

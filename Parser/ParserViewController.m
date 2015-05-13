@@ -10,10 +10,12 @@
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 #import "TFHpple.h"
+#import "News.h"
 
 @interface ParserViewController ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *content;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property int heightY;
 
 @end

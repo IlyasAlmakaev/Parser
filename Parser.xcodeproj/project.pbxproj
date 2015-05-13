@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		11CD1DC81B0109BA0002FB82 /* ParserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CD1DC61B0109BA0002FB82 /* ParserViewController.m */; };
 		11CD1DC91B0109BA0002FB82 /* ParserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11CD1DC71B0109BA0002FB82 /* ParserViewController.xib */; };
+		61E5A5501B035C0800CCDB9A /* Parser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61E5A54E1B035C0800CCDB9A /* Parser.xcdatamodeld */; };
+		61E5A5531B035DD900CCDB9A /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E5A5521B035DD900CCDB9A /* News.m */; };
 		84956F2D1AFC686C0077061D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84956F2C1AFC686C0077061D /* libxml2.dylib */; };
 		84956F311AFC7DA70077061D /* ParserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84956F2F1AFC7DA70077061D /* ParserTableViewCell.m */; };
 		84956F321AFC7DA70077061D /* ParserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84956F301AFC7DA70077061D /* ParserTableViewCell.xib */; };
-		84956F351AFC8FD60077061D /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 84956F341AFC8FD60077061D /* News.m */; };
 		84E7EC931AF9DA0000E1473E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7EC921AF9DA0000E1473E /* main.m */; };
 		84E7EC961AF9DA0000E1473E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7EC951AF9DA0000E1473E /* AppDelegate.m */; };
 		84E7EC991AF9DA0000E1473E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7EC981AF9DA0000E1473E /* ViewController.m */; };
@@ -39,12 +40,13 @@
 		11CD1DC51B0109BA0002FB82 /* ParserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserViewController.h; sourceTree = "<group>"; };
 		11CD1DC61B0109BA0002FB82 /* ParserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserViewController.m; sourceTree = "<group>"; };
 		11CD1DC71B0109BA0002FB82 /* ParserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParserViewController.xib; sourceTree = "<group>"; };
+		61E5A54F1B035C0800CCDB9A /* Parser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Parser.xcdatamodel; sourceTree = "<group>"; };
+		61E5A5511B035DD900CCDB9A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		61E5A5521B035DD900CCDB9A /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		84956F2C1AFC686C0077061D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		84956F2E1AFC7DA70077061D /* ParserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTableViewCell.h; sourceTree = "<group>"; };
 		84956F2F1AFC7DA70077061D /* ParserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTableViewCell.m; sourceTree = "<group>"; };
 		84956F301AFC7DA70077061D /* ParserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParserTableViewCell.xib; sourceTree = "<group>"; };
-		84956F331AFC8FD60077061D /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
-		84956F341AFC8FD60077061D /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		84E7EC8D1AF9DA0000E1473E /* Parser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E7EC911AF9DA0000E1473E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E7EC921AF9DA0000E1473E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,8 +133,9 @@
 				11CD1DC51B0109BA0002FB82 /* ParserViewController.h */,
 				11CD1DC61B0109BA0002FB82 /* ParserViewController.m */,
 				11CD1DC71B0109BA0002FB82 /* ParserViewController.xib */,
-				84956F331AFC8FD60077061D /* News.h */,
-				84956F341AFC8FD60077061D /* News.m */,
+				61E5A5511B035DD900CCDB9A /* News.h */,
+				61E5A5521B035DD900CCDB9A /* News.m */,
+				61E5A54E1B035C0800CCDB9A /* Parser.xcdatamodeld */,
 				84E7EC901AF9DA0000E1473E /* Supporting Files */,
 			);
 			path = Parser;
@@ -310,12 +313,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61E5A5501B035C0800CCDB9A /* Parser.xcdatamodeld in Sources */,
 				84E7EC991AF9DA0000E1473E /* ViewController.m in Sources */,
 				11CD1DC81B0109BA0002FB82 /* ParserViewController.m in Sources */,
 				84E7EC961AF9DA0000E1473E /* AppDelegate.m in Sources */,
-				84956F351AFC8FD60077061D /* News.m in Sources */,
 				84956F311AFC7DA70077061D /* ParserTableViewCell.m in Sources */,
 				84E7ECB91AF9DAB900E1473E /* ParserTableViewController.m in Sources */,
+				61E5A5531B035DD900CCDB9A /* News.m in Sources */,
 				84E7EC931AF9DA0000E1473E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +523,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		61E5A54E1B035C0800CCDB9A /* Parser.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				61E5A54F1B035C0800CCDB9A /* Parser.xcdatamodel */,
+			);
+			currentVersion = 61E5A54F1B035C0800CCDB9A /* Parser.xcdatamodel */;
+			path = Parser.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 84E7EC851AF9DA0000E1473E /* Project object */;
 }
