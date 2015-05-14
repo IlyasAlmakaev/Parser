@@ -47,6 +47,9 @@
 {
     [super viewWillAppear:animated];
     
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.reference]];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
