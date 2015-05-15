@@ -60,6 +60,10 @@
              TFHppleElement *element = [elements firstChildWithClassName:@"wraps out-topic"];
              
              self.titleNews.text = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
+             self.dateNews.text = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
+             
+             NSString *imageString = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
+             [self.imageNews setImageWithURL:[NSURL URLWithString:imageString]];
              
         /*     self.news.title = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
              
