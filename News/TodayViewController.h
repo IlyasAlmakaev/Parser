@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define AF_APP_EXTENSIONS
+
 @interface TodayViewController : UIViewController
 
 @end

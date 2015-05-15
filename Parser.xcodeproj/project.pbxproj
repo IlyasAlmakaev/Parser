@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		11CD1DC81B0109BA0002FB82 /* ParserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CD1DC61B0109BA0002FB82 /* ParserViewController.m */; };
 		11CD1DC91B0109BA0002FB82 /* ParserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11CD1DC71B0109BA0002FB82 /* ParserViewController.xib */; };
+		61E439F51B05F58300BE61DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E439F41B05F58300BE61DD /* libPods.a */; };
 		61E5A5501B035C0800CCDB9A /* Parser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61E5A54E1B035C0800CCDB9A /* Parser.xcdatamodeld */; };
 		61E5A5531B035DD900CCDB9A /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E5A5521B035DD900CCDB9A /* News.m */; };
 		61E860B51B05936D007EA9C7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E860B41B05936D007EA9C7 /* NotificationCenter.framework */; };
@@ -65,6 +66,8 @@
 		11CD1DC51B0109BA0002FB82 /* ParserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserViewController.h; sourceTree = "<group>"; };
 		11CD1DC61B0109BA0002FB82 /* ParserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserViewController.m; sourceTree = "<group>"; };
 		11CD1DC71B0109BA0002FB82 /* ParserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParserViewController.xib; sourceTree = "<group>"; };
+		61E439F41B05F58300BE61DD /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		61E439F61B06022F00BE61DD /* PrefixHeaderNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeaderNews.pch; sourceTree = "<group>"; };
 		61E5A54F1B035C0800CCDB9A /* Parser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Parser.xcdatamodel; sourceTree = "<group>"; };
 		61E5A5511B035DD900CCDB9A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		61E5A5521B035DD900CCDB9A /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61E439F51B05F58300BE61DD /* libPods.a in Frameworks */,
 				61E860B51B05936D007EA9C7 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +160,7 @@
 		84E7EC841AF9DA0000E1473E = {
 			isa = PBXGroup;
 			children = (
+				61E439F61B06022F00BE61DD /* PrefixHeaderNews.pch */,
 				84E7EC8F1AF9DA0000E1473E /* Parser */,
 				84E7ECA91AF9DA0000E1473E /* ParserTests */,
 				61E860B61B05936D007EA9C7 /* News */,
@@ -230,6 +235,7 @@
 		8753077E734B20573100A271 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61E439F41B05F58300BE61DD /* libPods.a */,
 				84956F2C1AFC686C0077061D /* libxml2.dylib */,
 				B8FD2DB29BC31BEF88227CF5 /* libPods.a */,
 				61E860B41B05936D007EA9C7 /* NotificationCenter.framework */,
@@ -461,13 +467,19 @@
 /* Begin XCBuildConfiguration section */
 		61E860C11B05936D007EA9C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 068EF4925D55A644B40359CF /* Pods.debug.xcconfig */;
 			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = News/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -475,9 +487,15 @@
 		};
 		61E860C21B05936D007EA9C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D10D7A353B98D8508E0AA3F0 /* Pods.release.xcconfig */;
 			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = News/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -568,6 +586,10 @@
 			baseConfigurationReference = 068EF4925D55A644B40359CF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = Parser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TodayViewController">
             <connections>
+                <outlet property="dateNews" destination="Twy-gk-N9Z" id="kxd-Ni-O8m"/>
+                <outlet property="imageNews" destination="0Vl-SP-SYb" id="QeU-Ug-Vha"/>
+                <outlet property="titleNews" destination="E3h-y1-WbH" id="YYB-4V-CPM"/>
                 <outlet property="view" destination="iN0-l3-epB" id="VaC-M4-3MZ"/>
             </connections>
         </placeholder>
