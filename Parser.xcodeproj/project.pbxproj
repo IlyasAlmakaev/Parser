@@ -11,6 +11,11 @@
 		11CD1DC91B0109BA0002FB82 /* ParserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11CD1DC71B0109BA0002FB82 /* ParserViewController.xib */; };
 		61E5A5501B035C0800CCDB9A /* Parser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61E5A54E1B035C0800CCDB9A /* Parser.xcdatamodeld */; };
 		61E5A5531B035DD900CCDB9A /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E5A5521B035DD900CCDB9A /* News.m */; };
+		61E860B51B05936D007EA9C7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E860B41B05936D007EA9C7 /* NotificationCenter.framework */; };
+		61E860BB1B05936D007EA9C7 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E860BA1B05936D007EA9C7 /* TodayViewController.m */; };
+		61E860C01B05936D007EA9C7 /* News.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 61E860B31B05936D007EA9C7 /* News.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		61E860CE1B05A09F007EA9C7 /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E860CD1B05A09F007EA9C7 /* NewsView.m */; };
+		61E860D01B05A0B9007EA9C7 /* NewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E860CF1B05A0B9007EA9C7 /* NewsView.xib */; };
 		84956F2D1AFC686C0077061D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84956F2C1AFC686C0077061D /* libxml2.dylib */; };
 		84956F311AFC7DA70077061D /* ParserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84956F2F1AFC7DA70077061D /* ParserTableViewCell.m */; };
 		84956F321AFC7DA70077061D /* ParserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84956F301AFC7DA70077061D /* ParserTableViewCell.xib */; };
@@ -26,6 +31,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		61E860BE1B05936D007EA9C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84E7EC851AF9DA0000E1473E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61E860B21B05936D007EA9C7;
+			remoteInfo = News;
+		};
 		84E7ECA71AF9DA0000E1473E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84E7EC851AF9DA0000E1473E /* Project object */;
@@ -35,6 +47,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		61E860C41B05936D007EA9C7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				61E860C01B05936D007EA9C7 /* News.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		068EF4925D55A644B40359CF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		11CD1DC51B0109BA0002FB82 /* ParserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserViewController.h; sourceTree = "<group>"; };
@@ -43,6 +69,14 @@
 		61E5A54F1B035C0800CCDB9A /* Parser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Parser.xcdatamodel; sourceTree = "<group>"; };
 		61E5A5511B035DD900CCDB9A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		61E5A5521B035DD900CCDB9A /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		61E860B31B05936D007EA9C7 /* News.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = News.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		61E860B41B05936D007EA9C7 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		61E860B81B05936D007EA9C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61E860B91B05936D007EA9C7 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		61E860BA1B05936D007EA9C7 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		61E860CC1B05A09F007EA9C7 /* NewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsView.h; sourceTree = "<group>"; };
+		61E860CD1B05A09F007EA9C7 /* NewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
+		61E860CF1B05A0B9007EA9C7 /* NewsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsView.xib; sourceTree = "<group>"; };
 		84956F2C1AFC686C0077061D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		84956F2E1AFC7DA70077061D /* ParserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTableViewCell.h; sourceTree = "<group>"; };
 		84956F2F1AFC7DA70077061D /* ParserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTableViewCell.m; sourceTree = "<group>"; };
@@ -67,6 +101,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		61E860B01B05936D007EA9C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61E860B51B05936D007EA9C7 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84E7EC8A1AF9DA0000E1473E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -86,6 +128,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61E860B61B05936D007EA9C7 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				61E860B91B05936D007EA9C7 /* TodayViewController.h */,
+				61E860BA1B05936D007EA9C7 /* TodayViewController.m */,
+				61E860B71B05936D007EA9C7 /* Supporting Files */,
+				61E860CC1B05A09F007EA9C7 /* NewsView.h */,
+				61E860CD1B05A09F007EA9C7 /* NewsView.m */,
+				61E860CF1B05A0B9007EA9C7 /* NewsView.xib */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		61E860B71B05936D007EA9C7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				61E860B81B05936D007EA9C7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		74245EA3CED120C9D3338A49 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +163,7 @@
 			children = (
 				84E7EC8F1AF9DA0000E1473E /* Parser */,
 				84E7ECA91AF9DA0000E1473E /* ParserTests */,
+				61E860B61B05936D007EA9C7 /* News */,
 				84E7EC8E1AF9DA0000E1473E /* Products */,
 				74245EA3CED120C9D3338A49 /* Pods */,
 				8753077E734B20573100A271 /* Frameworks */,
@@ -111,6 +175,7 @@
 			children = (
 				84E7EC8D1AF9DA0000E1473E /* Parser.app */,
 				84E7ECA61AF9DA0000E1473E /* ParserTests.xctest */,
+				61E860B31B05936D007EA9C7 /* News.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,6 +237,7 @@
 			children = (
 				84956F2C1AFC686C0077061D /* libxml2.dylib */,
 				B8FD2DB29BC31BEF88227CF5 /* libPods.a */,
+				61E860B41B05936D007EA9C7 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -179,6 +245,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		61E860B21B05936D007EA9C7 /* News */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61E860C31B05936D007EA9C7 /* Build configuration list for PBXNativeTarget "News" */;
+			buildPhases = (
+				61E860AF1B05936D007EA9C7 /* Sources */,
+				61E860B01B05936D007EA9C7 /* Frameworks */,
+				61E860B11B05936D007EA9C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = News;
+			productName = News;
+			productReference = 61E860B31B05936D007EA9C7 /* News.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		84E7EC8C1AF9DA0000E1473E /* Parser */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84E7ECB01AF9DA0000E1473E /* Build configuration list for PBXNativeTarget "Parser" */;
@@ -188,10 +271,12 @@
 				84E7EC8A1AF9DA0000E1473E /* Frameworks */,
 				84E7EC8B1AF9DA0000E1473E /* Resources */,
 				28B1E560C82A3422D813D979 /* Copy Pods Resources */,
+				61E860C41B05936D007EA9C7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				61E860BF1B05936D007EA9C7 /* PBXTargetDependency */,
 			);
 			name = Parser;
 			productName = Parser;
@@ -225,6 +310,9 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = intent;
 				TargetAttributes = {
+					61E860B21B05936D007EA9C7 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
 					84E7EC8C1AF9DA0000E1473E = {
 						CreatedOnToolsVersion = 6.3;
 					};
@@ -249,11 +337,20 @@
 			targets = (
 				84E7EC8C1AF9DA0000E1473E /* Parser */,
 				84E7ECA51AF9DA0000E1473E /* ParserTests */,
+				61E860B21B05936D007EA9C7 /* News */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		61E860B11B05936D007EA9C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61E860D01B05A0B9007EA9C7 /* NewsView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84E7EC8B1AF9DA0000E1473E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -309,6 +406,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		61E860AF1B05936D007EA9C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61E860BB1B05936D007EA9C7 /* TodayViewController.m in Sources */,
+				61E860CE1B05A09F007EA9C7 /* NewsView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84E7EC891AF9DA0000E1473E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -335,6 +441,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		61E860BF1B05936D007EA9C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61E860B21B05936D007EA9C7 /* News */;
+			targetProxy = 61E860BE1B05936D007EA9C7 /* PBXContainerItemProxy */;
+		};
 		84E7ECA81AF9DA0000E1473E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 84E7EC8C1AF9DA0000E1473E /* Parser */;
@@ -354,6 +465,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		61E860C11B05936D007EA9C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = News/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		61E860C21B05936D007EA9C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = News/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		84E7ECAE1AF9DA0000E1473E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -495,6 +630,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		61E860C31B05936D007EA9C7 /* Build configuration list for PBXNativeTarget "News" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61E860C11B05936D007EA9C7 /* Debug */,
+				61E860C21B05936D007EA9C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		84E7EC881AF9DA0000E1473E /* Build configuration list for PBXProject "Parser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
