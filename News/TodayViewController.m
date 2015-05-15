@@ -8,7 +8,6 @@
 
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
-#import "NewsView.h"
 
 @interface TodayViewController () <NCWidgetProviding>
 
@@ -19,10 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.preferredContentSize = CGSizeMake(320, 102);
-    
-    NewsView *newsView = [NewsView newsView];
-    [self.view addSubview:newsView];
+    self.preferredContentSize = CGSizeMake(0, 102);
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {

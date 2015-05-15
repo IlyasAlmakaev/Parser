@@ -14,8 +14,7 @@
 		61E860B51B05936D007EA9C7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E860B41B05936D007EA9C7 /* NotificationCenter.framework */; };
 		61E860BB1B05936D007EA9C7 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E860BA1B05936D007EA9C7 /* TodayViewController.m */; };
 		61E860C01B05936D007EA9C7 /* News.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 61E860B31B05936D007EA9C7 /* News.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		61E860CE1B05A09F007EA9C7 /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E860CD1B05A09F007EA9C7 /* NewsView.m */; };
-		61E860D01B05A0B9007EA9C7 /* NewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E860CF1B05A0B9007EA9C7 /* NewsView.xib */; };
+		61E860D01B05A0B9007EA9C7 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E860CF1B05A0B9007EA9C7 /* TodayViewController.xib */; };
 		84956F2D1AFC686C0077061D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84956F2C1AFC686C0077061D /* libxml2.dylib */; };
 		84956F311AFC7DA70077061D /* ParserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84956F2F1AFC7DA70077061D /* ParserTableViewCell.m */; };
 		84956F321AFC7DA70077061D /* ParserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84956F301AFC7DA70077061D /* ParserTableViewCell.xib */; };
@@ -74,9 +73,7 @@
 		61E860B81B05936D007EA9C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61E860B91B05936D007EA9C7 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		61E860BA1B05936D007EA9C7 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
-		61E860CC1B05A09F007EA9C7 /* NewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsView.h; sourceTree = "<group>"; };
-		61E860CD1B05A09F007EA9C7 /* NewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
-		61E860CF1B05A0B9007EA9C7 /* NewsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsView.xib; sourceTree = "<group>"; };
+		61E860CF1B05A0B9007EA9C7 /* TodayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayViewController.xib; sourceTree = "<group>"; };
 		84956F2C1AFC686C0077061D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		84956F2E1AFC7DA70077061D /* ParserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTableViewCell.h; sourceTree = "<group>"; };
 		84956F2F1AFC7DA70077061D /* ParserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTableViewCell.m; sourceTree = "<group>"; };
@@ -133,10 +130,8 @@
 			children = (
 				61E860B91B05936D007EA9C7 /* TodayViewController.h */,
 				61E860BA1B05936D007EA9C7 /* TodayViewController.m */,
+				61E860CF1B05A0B9007EA9C7 /* TodayViewController.xib */,
 				61E860B71B05936D007EA9C7 /* Supporting Files */,
-				61E860CC1B05A09F007EA9C7 /* NewsView.h */,
-				61E860CD1B05A09F007EA9C7 /* NewsView.m */,
-				61E860CF1B05A0B9007EA9C7 /* NewsView.xib */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -347,7 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61E860D01B05A0B9007EA9C7 /* NewsView.xib in Resources */,
+				61E860D01B05A0B9007EA9C7 /* TodayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +406,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				61E860BB1B05936D007EA9C7 /* TodayViewController.m in Sources */,
-				61E860CE1B05A09F007EA9C7 /* NewsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +631,7 @@
 				61E860C21B05936D007EA9C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84E7EC881AF9DA0000E1473E /* Build configuration list for PBXProject "Parser" */ = {
 			isa = XCConfigurationList;
