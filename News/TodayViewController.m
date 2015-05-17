@@ -11,12 +11,18 @@
 #import "TFHpple.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
+#import "ParserViewController.h"
 
 
 @interface TodayViewController () <NCWidgetProviding>
+
 @property (weak, nonatomic) IBOutlet UILabel *titleNews;
 @property (weak, nonatomic) IBOutlet UILabel *dateNews;
 @property (weak, nonatomic) IBOutlet UIImageView *imageNews;
+
+/*@property (strong, nonatomic) ParserViewController *parserViewController;
+@property (strong, nonatomic) UINavigationController *parserNavigationController;
+@property (strong, nonatomic) NSString *reference;*/
 
 @end
 
@@ -26,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.preferredContentSize = CGSizeMake(0, 102);
-    [self parse];
+    
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
@@ -35,8 +41,19 @@
     // If an error is encountered, use NCUpdateResultFailed
     // If there's no update required, use NCUpdateResultNoData
     // If there's an update, use NCUpdateResultNewData
-
+    [self parse];
     completionHandler(NCUpdateResultNewData);
+}
+
+- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+   /* self.parserViewController = [[ParserViewController alloc] init];
+    
+    self.parserViewController.reference = self.reference;
+    
+    self.parserNavigationController = [[UINavigationController alloc] initWithRootViewController:self.parserViewController];
+    [self presentViewController:self.parserNavigationController animated:YES completion:nil];*/
+    NSLog(@"Go to full news");
 }
 
 - (void)parse
@@ -55,26 +72,19 @@
          
          NSArray *nodes = [parser searchWithXPathQuery:pathQueryString];
          
-         for (TFHppleElement *elements in nodes)
-         {
-             TFHppleElement *element = [elements firstChildWithClassName:@"wraps out-topic"];
+         TFHppleElement *elements = [nodes objectAtIndex:0];
+
+         TFHppleElement *element = [elements firstChildWithClassName:@"wraps out-topic"];
              
-             self.titleNews.text = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
-             self.dateNews.text = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
+         self.titleNews.text = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
              
-             NSString *imageString = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
-             [self.imageNews setImageWithURL:[NSURL URLWithString:imageString]];
+         NSString *dateString = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
+         self.dateNews.text = [dateString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
              
-        /*     self.news.title = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
-             
-             self.news.date = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
-             
-             self.news.image = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
-             
-             self.news.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
-             
-             [self.newsContent addObject:self.news];*/
-         }
+         NSString *imageString = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
+         [self.imageNews setImageWithURL:[NSURL URLWithString:imageString]];
+         
+ //        self.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
      }
                                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
