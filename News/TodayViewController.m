@@ -20,10 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateNews;
 @property (weak, nonatomic) IBOutlet UIImageView *imageNews;
 
-/*@property (strong, nonatomic) ParserViewController *parserViewController;
-@property (strong, nonatomic) UINavigationController *parserNavigationController;
-@property (strong, nonatomic) NSString *reference;*/
-
 @end
 
 @implementation TodayViewController
@@ -47,12 +43,6 @@
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   /* self.parserViewController = [[ParserViewController alloc] init];
-    
-    self.parserViewController.reference = self.reference;
-    
-    self.parserNavigationController = [[UINavigationController alloc] initWithRootViewController:self.parserViewController];
-    [self presentViewController:self.parserNavigationController animated:YES completion:nil];*/
     NSLog(@"Go to full news");
 }
 
@@ -83,8 +73,7 @@
              
          NSString *imageString = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
          [self.imageNews setImageWithURL:[NSURL URLWithString:imageString]];
-         
- //        self.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
+
      }
                                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
