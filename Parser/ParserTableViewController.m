@@ -61,8 +61,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.news = [NSEntityDescription insertNewObjectForEntityForName:@"News"
-                                               inManagedObjectContext:self.appD.managedOC];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"News"];
+ //   self.news = [NSEntityDescription insertNewObjectForEntityForName:@"News"
+  //                                             inManagedObjectContext:self.appD.managedOC];
+    self.newsContent = [[self.appD.managedOC executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -89,11 +93,11 @@
         cell = [[ParserTableViewCell alloc] init]; // or your custom initialization
     }
     
-    self.news = [self.newsContent objectAtIndex:indexPath.row];
+    NSManagedObject *newsManagedObject = [self.newsContent objectAtIndex:indexPath.row];
     
-    [cell.titleLabel setText:self.news.title];
-    cell.dateLabel.text = [self.news.date stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [cell.imageLabel setImageWithURL:[NSURL URLWithString:self.news.image]];
+    [cell.titleLabel setText:[newsManagedObject valueForKey:@"title"]];
+    cell.dateLabel.text = [[newsManagedObject valueForKey:@"date"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [cell.imageLabel setImageWithURL:[NSURL URLWithString:[newsManagedObject valueForKey:@"image"]]];
 
     // Configure the cell...
     
@@ -147,20 +151,22 @@
          
          for (TFHppleElement *elements in nodes)
          {
-             self.news = [NSEntityDescription insertNewObjectForEntityForName:@"News"
+             
+             News *newsData = [NSEntityDescription insertNewObjectForEntityForName:@"News"
                                                        inManagedObjectContext:self.appD.managedOC];
              
              TFHppleElement *element = [elements firstChildWithClassName:@"wraps out-topic"];
              
-             self.news.title = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
+             newsData.title = [[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
              
-             self.news.date = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
+             newsData.date = [[element firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
              
-             self.news.image = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
+             newsData.image = [[[[elements firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"] objectForKey:@"src"];
              
-             self.news.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
-             
-             [self.newsContent addObject:self.news];
+             newsData.reference = [[[[element firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"] objectForKey:@"href"];
+                          
+             [self.appD.managedOC save:nil];
+             [self.newsContent addObject:newsData];
          }
          
          [self.tableView reloadData];
